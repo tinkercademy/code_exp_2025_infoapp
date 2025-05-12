@@ -1,4 +1,5 @@
 import { View, Text } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const EventsScreen = () => (
   <View
@@ -12,4 +13,14 @@ const EventsScreen = () => (
   </View>
 );
 
-export default EventsScreen;
+const Stack = createStackNavigator();
+
+const EventsStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Events" component={EventsScreen} />
+    </Stack.Navigator>
+  );
+};
+
+export default EventsStack;

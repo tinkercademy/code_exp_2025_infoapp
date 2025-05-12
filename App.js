@@ -4,18 +4,21 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 // Import local screens
 import HomeScreen from "./screens/HomeScreen";
-import EventsScreen from "./screens/EventsScreen";
+import EventsStack from "./screens/EventsScreen";
 import ContactScreen from "./screens/ContactScreen";
 
 // Navigator -----------------------------------------------
 const Tabs = createBottomTabNavigator({
   screens: {
     Home: HomeScreen,
-    Events: EventsScreen,
+    Events: {
+      screen: EventsStack,
+      options: { headerShown: false }
+    },
     Contact: ContactScreen
   },
   screenOptions: ({ route }) => ({
-    tabBarActiveTintColor: "blue",
+    tabBarActiveTintColor: "salmon",
     tabBarInactiveTintColor: "gray",
     tabBarIcon: ({ focused, color, size }) => {
       let iconName;
@@ -23,7 +26,9 @@ const Tabs = createBottomTabNavigator({
       if (route.name === "Home") {
         iconName = "home";
       } else if (route.name === "Events") {
-        iconName = "calendar";
+        iconName = focused ? "calendar" : "calendar-o";
+      } else if (route.name === "Contact") {
+        iconName = focused ? "address-book" : "address-book-o";
       } else {
         iconName = "question-circle";
       }
